@@ -1,0 +1,45 @@
+service: starter-snake-go-serverless 
+
+frameworkVersion: ">=1.28.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: go1.x
+
+package:
+ exclude:
+   - ./**
+ include:
+   - ./bin/**
+
+functions:
+  hello:
+    handler: bin/hello
+    events:
+      - http:
+          path: "" 
+          method: get
+  ping:
+    handler: bin/ping
+    events:
+      - http:
+          path: "ping" 
+          method: post
+  start:
+    handler: bin/start
+    events:
+      - http:
+          path: start
+          method: post
+  move:
+    handler: bin/move
+    events:
+      - http:
+          path: move
+          method: post
+  end:
+    handler: bin/end
+    events:
+      - http:
+          path: end
+          method: post
